@@ -1,4 +1,4 @@
 #!/bin/bash
-cp editor vimide ~/bin/
+cp vimedit vimide ~/bin/
 cp .vimide.tmux.conf ~/
 
