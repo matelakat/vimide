@@ -1,0 +1,31 @@
+#!/usr/bin/python
+
+import subprocess
+import sys
+import os
+
+
+def main():
+    with open('/dev/tty', 'r') as keyb:
+        for line in sys.stdin.readlines():
+            print line
+            segments = line.split(':')
+            if len(segments) >= 2:
+                fname = segments[0]
+                line = segments[1]
+
+                if os.path.exists(fname):
+                    subprocess.call([
+                        'vim', '--servername', 'coding',
+                        '--remote-send', '<Esc>:e %s<CR>%sG' % (fname, line)])
+                    subprocess.call([
+                        'tmux', 'select-pane', '-t', '0'])
+                    print 'press ENTER for next entry'
+                    keyb.readline()
+            else:
+                print line
+
+
+if __name__=="__main__":
+    main()
+
