@@ -1,2 +1,2 @@
 #!/bin/bash
-tmux -f ~/.vimide.tmux.conf attach
+tmux new-session -s development "vi --servername coding" \; split-window -h bash \; select-pane -t 0
