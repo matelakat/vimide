@@ -6,7 +6,8 @@ set nowrap
 set encoding=utf-8
 set hlsearch
 set sw=4
-map gn :!vimide-console<CR><CR>
+set cc=80
+map gn :wa<CR>:!tmux send-keys -t 1 C-p C-m<CR><CR>
 map gci :!svn ci % -m "
 map gadd :!svn add % -m "
 map gkt :!python ci/pep8.py %
