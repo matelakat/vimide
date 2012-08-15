@@ -4,6 +4,7 @@ Some helper stuff, so that a tmux + vim combo works like an "IDE"
 
 I usually use tmux and vim. On my left, I edit the source file, and on my
 right, I usually run the tests. To have the same setup, just say:
+
     vimide
 
 See:
@@ -37,7 +38,9 @@ See:
 (
 The above drawing was created with http://www.asciiflow.com and was pasted
 to vi by:
+
     <ESC>:r!xclip -o -selection clipboard
+
 )
 
 The basic idea is that within tmux, you can send commands to other panes,
@@ -56,7 +59,9 @@ Edit files in vim: vimedit
 Say you want to fix your pep8 violations. Okay, go to the right panel, execute
 pep8. That will print out all the dodgy files, and the lines. You can open
 those files one by one, but it makes sense to pipe pep8 -s output to vimedit:
+
     pep8 somepackage | vimedit
+
 It will activate your left pane, open the file in vi, so you can fix that.
 Should you wish to jump to the next error, you need to press Enter on the right
 panel. Use Re-run last command for that (ESC gn)
