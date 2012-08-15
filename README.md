@@ -8,16 +8,16 @@ right, I usually run the tests. To have the same setup, just say:
 
 See:
 
-+------------------------------+
-|               |              |
-|               |              |
-|               |              |
-|    gvim       |   console    |
-|               |              |
-|               |              |
-|               |              |
-|               |              |
-+------------------------------+
+    +------------------------------+
+    |               |              |
+    |               |              |
+    |               |              |
+    |    gvim       |   console    |
+    |               |              |
+    |               |              |
+    |               |              |
+    |               |              |
+    +------------------------------+
 
 The basic idea is that within tmux, you can send commands to other panes,
 and you can do the same, if you start your gvim in server mode
