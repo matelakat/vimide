@@ -8,16 +8,37 @@ right, I usually run the tests. To have the same setup, just say:
 
 See:
 
-    +------------------------------+
-    |               |              |
-    |               |              |
-    |               |              |
-    |    gvim       |   console    |
-    |               |              |
-    |               |              |
-    |               |              |
-    |               |              |
-    +------------------------------+
+    +-----------------------------+--------------------------------+
+    |                             |                                |
+    |                             |                                |
+    |                             |                                |
+    |                             |                                |
+    |                             |                                |
+    |                             |                                |
+    |                             |                                |
+    |                             |                                |
+    |      gvim is running here   |     tests run here             |
+    |                             |                                |
+    |                             |                                |
+    |                             |                                |
+    |                             |                                |
+    |                             |                                |
+    |                             |                                |
+    |                             |                                |
+    |                             |                                |
+    +-----------------------------+--------------------------------+
+
+                    ^
+                    |
+                    |
+                    +------+  My screen
+
+
+(
+The above drawing was created with http://www.asciiflow.com and was pasted
+to vi by:
+    <ESC>:r!xclip -o -selection clipboard
+)
 
 The basic idea is that within tmux, you can send commands to other panes,
 and you can do the same, if you start your gvim in server mode
