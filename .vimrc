@@ -8,12 +8,6 @@ set hlsearch
 set sw=4
 set cc=80
 map gn :wa<CR>:!xsetroot -solid yellow & xdotool key super+2 key ctrl+p key KP_Enter key super+1<CR><CR>
-map gci :!svn ci % -m "
-map gadd :!svn add % -m "
-map gkt :!python ci/pep8.py %
-map gp :!python %
-map gl :!pylint % \| less
-map gd :!svn diff % \| less
 set expandtab
 au BufNewFile,BufRead *.mak setfiletype mako
 au BufNewFile,BufRead *.mako setfiletype mako
