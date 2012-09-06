@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+import subprocess
+import os
+import re
+
+
+def get_clipboard():
+    return subprocess.check_output("xclip -o".split())
+
+def send_to_vim(vimcommands):
+    subprocess.call("vim --servername coding --remote-send".split()
+        + [vimcommands])
+
+def switch_to_vim():
+    subprocess.call("xdotool key super+1".split())
+
+def open_in_vim(fname):
+    if not os.path.exists(fname):
+        raise ValueError(fname)
+    send_to_vim("<ESC>:e {0}<CR>".format(fname))
+
+def dotted_python_to_file(fname):
+    match = re.search(r"(?P<noseout>(\w|\.)+)", fname)
+    if match:
+        dotted_name = match.group("noseout")
+        name_items = dotted_name.split(".")[:-1]
+        return "/".join(name_items) + ".py"
+    return None
+
+
+if __name__ == "__main__":
+    fname = get_clipboard()
+    if not os.path.exists(fname):
+        fname = dotted_python_to_file(fname)
+    open_in_vim(fname)
+    switch_to_vim()
