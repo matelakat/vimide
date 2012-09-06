@@ -1,0 +1,24 @@
+#!/bin/bash
+export PATH=$PATH:~/bin
+export VISUAL=vi
+if [ "$DISPLAY" != "" ];
+then
+    xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 8 1
+    xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 8 2
+    xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 16 200
+    xinput set-int-prop 10 "Evdev Wheel Emulation" 8 1
+    xinput set-int-prop 10 "Evdev Wheel Emulation Button" 8 2
+    xinput set-int-prop 10 "Evdev Wheel Emulation Timeout" 16 200
+    echo "Trackpoint patch applied"
+else
+    echo "Trackpoint patch skipped"
+fi
+
+function svndiff
+{
+    #svn diff --diff-cmd ~/bin/svn-diff-meld $*
+    svn diff $* | colordiff | less -R
+}
+
+#set -o vi
+PROMPT_COMMAND="if [[ \$? == 0 ]]; then xsetroot -solid green; else xsetroot -solid red; fi "
