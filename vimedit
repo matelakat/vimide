@@ -5,6 +5,17 @@ import sys
 import os
 
 
+def tmux_activate_pane_0():
+    subprocess.call([
+        'tmux', 'select-pane', '-t', '0'])
+
+def dwm_activate_window_1():
+    subprocess.call("xdotool key super+1".split())
+
+
+activate_vim = dwm_activate_window_1
+
+
 def main():
     with open('/dev/tty', 'r') as keyb:
         for line in sys.stdin.readlines():
@@ -18,8 +29,7 @@ def main():
                     subprocess.call([
                         'vim', '--servername', 'coding',
                         '--remote-send', '<Esc>:e %s<CR>%sG' % (fname, line)])
-                    subprocess.call([
-                        'tmux', 'select-pane', '-t', '0'])
+                    activate_vim()
                     print 'press ENTER for next entry'
                     keyb.readline()
             else:
