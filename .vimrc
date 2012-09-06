@@ -1,5 +1,5 @@
 syntax on
-"colorscheme asmanian2
+colorscheme 256-jungle
 filetype plugin on
 set autoindent
 set nowrap
