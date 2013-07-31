@@ -1,3 +1,2 @@
 #!/bin/bash
-#tmux new-session -s development "vi --servername coding" \; split-window -h bash \; select-pane -t 0
-vi --servername coding
+vi --servername coding $@

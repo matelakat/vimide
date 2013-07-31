@@ -28,9 +28,19 @@ def dotted_python_to_file(fname):
     return None
 
 
+def extract_fname_from(clipboard):
+    match = re.search(r"(?P<fname>(\w|/|\.)+)", clipboard)
+    if match:
+        fname = match.group("fname")
+        return fname
+    raise ValueError("Cannot extract path from %s" % clipboard)
+
+
 if __name__ == "__main__":
-    fname = get_clipboard()
+    clipboard = get_clipboard()
+    fname = extract_fname_from(clipboard)
     if not os.path.exists(fname):
-        fname = dotted_python_to_file(fname)
+        raise ValueError("File not found")
+        #fname = dotted_python_to_file(fname)
     open_in_vim(fname)
     switch_to_vim()

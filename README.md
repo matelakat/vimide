@@ -1,61 +1,47 @@
-VimIDE
-======
-Some helper stuff, so that a tmux + vim combo works like an "IDE"
+# VimIDE
 
-I usually use tmux and vim. On my left, I edit the source file, and on my
-right, I usually run the tests. To have the same setup, just say:
+Some helper stuff, so that it is more comfortable to edit with vim. These tools
+could be helpful for a tdd-style development. Spare some time for yourself!
+
+## Dependencies
+
+I use:
+
+ - `dmenu`
+ - `dwm`
+ - `st`
+ - `colordiff`
+ - `xclip`
+ - `xsetroot`
+
+## Start VimIDE
+
+To start it, type:
 
     vimide
 
-See:
+It is nothing more, than starting a vi with the `--servername` option.
 
-    +-----------------------------+--------------------------------+
-    |                             |                                |
-    |                             |                                |
-    |                             |                                |
-    |                             |                                |
-    |                             |                                |
-    |                             |                                |
-    |                             |                                |
-    |                             |                                |
-    |      gvim is running here   |     tests run here             |
-    |                             |                                |
-    |                             |                                |
-    |                             |                                |
-    |                             |                                |
-    |                             |                                |
-    |                             |                                |
-    |                             |                                |
-    |                             |                                |
-    +-----------------------------+--------------------------------+
+## VimIDE mappings
 
-                    ^
-                    |
-                    |
-                    +------+  My screen
+### Re-run last command vim: ESC gn
 
+ - Save all changes
+ - Change background color to yellow
+ - Press WinKey + 2 (Change to second window)
+ - Press Ctrl + p (Recall previous command)
+ - Press Enter (execute the command)
+ - Press WinKey + 1 (Change back to first window)
 
-(
-The above drawing was created with http://www.asciiflow.com and was pasted
-to vi by:
+## Command-line tools
 
-    <ESC>:r!xclip -o -selection clipboard
+### Open file in VimIDE - `O`
 
-)
+You have a VimIDE open. If you run `O`, it will open the file that is specified
+by your clipboard's content
 
-The basic idea is that within tmux, you can send commands to other panes,
-and you can do the same, if you start your gvim in server mode
+### Edit files one-by one in vim: `vimedit`
 
-
-Re-run last command vim: ESC gn
--------------------------------
-I need to save my changes in vim, go to the right pane, execute the last
-command (usually nosetests), and go back to vi. Instead of doing all these
-steps, press Esc, gn in vim. It will save all files, and send Ctrl + p, and
-Enter to the right pane.
-
-Edit files in vim: vimedit
---------------------------
 Say you want to fix your pep8 violations. Okay, go to the right panel, execute
 pep8. That will print out all the dodgy files, and the lines. You can open
 those files one by one, but it makes sense to pipe pep8 -s output to vimedit:

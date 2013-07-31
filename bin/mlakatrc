@@ -1,8 +1,10 @@
 #!/bin/bash
 export PATH=$PATH:~/bin
 export VISUAL=vi
-if [ "$DISPLAY" != "" ];
-then
+export TERM=xterm
+
+if [ "$DISPLAY" == ":0" ]; then
+    # Configure IBM trackpoint on physical terminal
     xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 8 1
     xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 8 2
     xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 16 200
@@ -10,15 +12,12 @@ then
     xinput set-int-prop 10 "Evdev Wheel Emulation Button" 8 2
     xinput set-int-prop 10 "Evdev Wheel Emulation Timeout" 16 200
     echo "Trackpoint patch applied"
-else
-    echo "Trackpoint patch skipped"
 fi
 
-function svndiff
-{
-    #svn diff --diff-cmd ~/bin/svn-diff-meld $*
-    svn diff $* | colordiff | less -R
-}
+if [ "$DISPLAY" == ":13" -o "$DISPLAY" == ":14" ]; then
+    # During screen capture, use a short prompt
+    PS1="[\\w]\\$ "
+fi
 
-#set -o vi
+# Change the background color depending on the last command's exit value
 PROMPT_COMMAND="if [[ \$? == 0 ]]; then xsetroot -solid green; else xsetroot -solid red; fi "
