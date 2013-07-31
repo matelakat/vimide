@@ -2,33 +2,33 @@
 import subprocess
 import os
 import re
+import sys
 
 
 def get_clipboard():
     return subprocess.check_output("xclip -o".split())
 
-def send_to_vim(vimcommands):
-    subprocess.call("vim --servername coding --remote-send".split()
-        + [vimcommands])
+
+def send_to_vimide(vimcommands):
+    subprocess.call(
+        "vim --servername coding --remote-send".split() + [vimcommands])
+
 
 def switch_to_vim():
     subprocess.call("xdotool key super+1".split())
 
+
 def open_in_vim(fname):
     if not os.path.exists(fname):
         raise ValueError(fname)
-    send_to_vim("<ESC>:e {0}<CR>".format(fname))
-
-def dotted_python_to_file(fname):
-    match = re.search(r"(?P<noseout>(\w|\.)+)", fname)
-    if match:
-        dotted_name = match.group("noseout")
-        name_items = dotted_name.split(".")[:-1]
-        return "/".join(name_items) + ".py"
-    return None
+    send_to_vimide("<ESC>:e {0}<CR>".format(fname))
 
 
 def extract_fname_from(clipboard):
+    '''
+    >>> extract_fname_from("bin/O:10:1: E302 expected 2 blank lines, found 1")
+    'bin/O'
+    '''
     match = re.search(r"(?P<fname>(\w|/|\.)+)", clipboard)
     if match:
         fname = match.group("fname")
@@ -36,11 +36,23 @@ def extract_fname_from(clipboard):
     raise ValueError("Cannot extract path from %s" % clipboard)
 
 
-if __name__ == "__main__":
+def main():
     clipboard = get_clipboard()
     fname = extract_fname_from(clipboard)
     if not os.path.exists(fname):
         raise ValueError("File not found")
-        #fname = dotted_python_to_file(fname)
     open_in_vim(fname)
     switch_to_vim()
+
+
+def run_tests():
+    import doctest
+    doctest.testmod()
+
+
+if __name__ == "__main__":
+    if len(sys.argv) >= 2:
+        if sys.argv[1] == 'test':
+            run_tests()
+    else:
+        main()
