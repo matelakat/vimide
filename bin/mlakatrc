@@ -5,13 +5,11 @@ export TERM=xterm
 
 if [ "$DISPLAY" == ":0" ]; then
     # Configure IBM trackpoint on physical terminal
-    xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 8 1
-    xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 8 2
-    xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 16 200
-    xinput set-int-prop 10 "Evdev Wheel Emulation" 8 1
-    xinput set-int-prop 10 "Evdev Wheel Emulation Button" 8 2
-    xinput set-int-prop 10 "Evdev Wheel Emulation Timeout" 16 200
-    echo "Trackpoint patch applied"
+    for device_name in "TPPS/2 IBM TrackPoint" "pointer:Lite-On Technology Corp. ThinkPad USB Keyboard with TrackPoint"; do
+        xinput set-int-prop "$device_name" "Evdev Wheel Emulation" 8 1
+        xinput set-int-prop "$device_name" "Evdev Wheel Emulation Button" 8 2
+        xinput set-int-prop "$device_name" "Evdev Wheel Emulation Timeout" 16 200
+    done
 fi
 
 if [ "$DISPLAY" == ":13" -o "$DISPLAY" == ":14" ]; then
