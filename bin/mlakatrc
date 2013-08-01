@@ -18,4 +18,4 @@ if [ "$DISPLAY" == ":13" -o "$DISPLAY" == ":14" ]; then
 fi
 
 # Change the background color depending on the last command's exit value
-PROMPT_COMMAND="if [[ \$? == 0 ]]; then xsetroot -solid green; else xsetroot -solid red; fi "
+PROMPT_COMMAND="if [[ \$? == 0 ]]; then xsetroot -solid \#336633; else xsetroot -solid \#660000; fi "
