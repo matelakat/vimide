@@ -12,5 +12,6 @@ set expandtab
 au BufNewFile,BufRead *.mak setfiletype mako
 au BufNewFile,BufRead *.mako setfiletype mako
 au BufNewFile,BufRead *.ftl setfiletype ftl
+au BufNewFile,BufRead *.pp setfiletype puppet
 au Bufread,BufNewFile *.feature setfiletype gherkin
 
