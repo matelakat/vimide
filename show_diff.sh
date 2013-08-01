@@ -1,0 +1,18 @@
+#!/bin/bash
+set -u
+set -x
+
+function showdiff() {
+    local dirname
+    dirname="$1"
+(
+    cd "$dirname"
+    for i in *; do
+        diff -u ~/"$dirname"/$i $i
+    done
+)
+}
+
+showdiff bin
+showdiff .vim/colors
+diff -u ~/.vimrc .vimrc
