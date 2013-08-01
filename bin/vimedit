@@ -3,6 +3,7 @@
 import subprocess
 import sys
 import os
+import time
 
 
 def tmux_activate_pane_0():
@@ -26,6 +27,7 @@ def main():
                 line = segments[1]
 
                 if os.path.exists(fname):
+                    time.sleep(0.1)
                     subprocess.call([
                         'vim', '--servername', 'coding',
                         '--remote-send', '<Esc>:e %s<CR>%sG' % (fname, line)])
