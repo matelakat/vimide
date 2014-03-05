@@ -1,5 +1,11 @@
-syntax on
+" Force 25 colors
+set t_Co=256
+" Force vim to do BCE (Background-Color-Erase)
+set t_ut=
+" Select dark colorscheme
+set background=dark
 colorscheme 256-jungle
+syntax on
 filetype plugin on
 set autoindent
 set nowrap
@@ -14,4 +20,14 @@ au BufNewFile,BufRead *.mako setfiletype mako
 au BufNewFile,BufRead *.ftl setfiletype ftl
 au BufNewFile,BufRead *.pp setfiletype puppet
 au Bufread,BufNewFile *.feature setfiletype gherkin
+so ~/.vim/plugin/py-coverage.vim
 
+nnoremap gmh :PyCoverageHighlight<CR>
+nnoremap gmc :PyCoverageClear<CR>
+nnoremap gmq :PyCoverageSetQuickfix<CR>
+nnoremap gml :PyCoverageSetLoclist<CR>
+
+" highlight PyCoverageMissed gui=undercurl guisp=Orange
+highlight PyCoverageMissed ctermbg=52
+
+autocmd FileType python PyCoverageHighlight
