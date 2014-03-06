@@ -15,4 +15,5 @@ function showdiff() {
 
 showdiff bin
 showdiff .vim/colors
+showdiff .vim/plugin
 diff -u ~/.vimrc .vimrc
