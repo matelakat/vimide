@@ -1,0 +1,13 @@
+#!/bin/bash
+AGENTRC=~/.agentrc
+
+if [ -f $AGENTRC ]; then
+    . $AGENTRC
+fi
+
+ssh-add -L > /dev/null
+if [ "$?" == "2" ]; then
+    echo "Failed to connect to the agent. Spawning a new one."
+    ssh-agent > $AGENTRC
+    . $AGENTRC
+fi

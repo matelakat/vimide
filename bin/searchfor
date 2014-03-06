@@ -1,0 +1,8 @@
+#!/bin/bash
+grep --color=always -re "\<$1\>" \
+    --exclude ".workspace" \
+    --exclude "*.pyc" --exclude "*.html" --exclude "*.swp" \
+    --exclude-dir ".venv" --exclude-dir ".git" --exclude-dir "LC_MESSAGES" \
+    --exclude-dir ".testrepository" \
+    --exclude "subunit.log" \
+    --exclude "*.sql" . | less -R

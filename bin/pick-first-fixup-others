@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+
+import sys
+
+
+def pick_squash(fname, stream):
+    first_pick_done = False
+
+    lines = []
+    with open(fname, 'rb') as todofile:
+        for l in todofile.readlines():
+            if l.startswith("pick"):
+                if first_pick_done:
+                    l = l.replace("pick", "fixup", 1)
+                else:
+                    first_pick_done = True
+
+            lines.append(l)
+
+    with open(fname, 'wb') as todofile:
+        for l in lines:
+            todofile.write(l)
+
+
+if __name__=="__main__":
+    import sys
+    fname, = sys.argv[1:]
+    stream = sys.stdout
+    pick_squash(fname, stream)
+

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+set -u
+set -x
+
+BRANCH=$(git branch | grep '*' | sed -e 's/\* //g')
+LASTCOMMIT=${1-`git show master | grep commit | sed -e 's/^commit \(.*\)$/\1/g'`}
+MERGEDBRANCH="${BRANCH}-fixedup"
+
+echo "On branch: $BRANCH Last change on master: $LASTCOMMIT target: $MERGEDBRANCH"
+
+git checkout -B $MERGEDBRANCH
+VISUAL=pick-first-fixup-others git rebase -i "$LASTCOMMIT"

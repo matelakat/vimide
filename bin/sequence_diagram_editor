@@ -1,0 +1,4 @@
+#!/bin/bash
+wmname LG3D
+unset AWT_TOOLKIT
+~/tools/java/bin/java -jar ~/tools/sdedit.jar "$@"
