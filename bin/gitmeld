@@ -1,0 +1,13 @@
+#!/bin/bash
+set -u
+
+FNAME=$1
+BRANCH=${2:-""}
+ORIG=$(tempfile)
+
+shift
+
+cp $FNAME $ORIG
+git diff $BRANCH -- $FNAME | patch -sR $ORIG
+meld $ORIG $FNAME
+rm $ORIG
