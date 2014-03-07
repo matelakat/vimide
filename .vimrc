@@ -16,6 +16,7 @@ set cc=80
 map gn :wa<CR>:!xsetroot -solid yellow & xdotool key super+2 key ctrl+p key KP_Enter key super+1<CR><CR>
 map gs :wa<CR>:r !date<CR>I #: <esc><C-h>i
 map ge o  
+map gl :w<CR>:!pdflatex %<CR><CR>
 set expandtab
 au BufNewFile,BufRead *.mak setfiletype mako
 au BufNewFile,BufRead *.mako setfiletype mako
@@ -24,12 +25,29 @@ au BufNewFile,BufRead *.pp setfiletype puppet
 au Bufread,BufNewFile *.feature setfiletype gherkin
 so ~/.vim/plugin/py-coverage.vim
 
+command GDiff !gitdiff
+command GCommit !git commit -av
+
 nnoremap gmh :PyCoverageHighlight<CR>
 nnoremap gmc :PyCoverageClear<CR>
 nnoremap gmq :PyCoverageSetQuickfix<CR>
 nnoremap gml :PyCoverageSetLoclist<CR>
 
+highlight ExtraWhitespace ctermbg=red guibg=red
+call matchadd('ExtraWhitespace', '\s\+$', 11)
+
+" http://vim.wikia.com/wiki/Detect_window_creation_with_WinEnter
+" http://vim.wikia.com/wiki/Highlight_long_lines
+" Consider this one, since WinEnter doesn't fire on the first window created
+" when Vim launches.
+" You'll need to set any options for the first window in your vimrc,
+" or in an earlier VimEnter autocmd if you include this
+autocmd VimEnter * let w:created=1
+
 " highlight PyCoverageMissed gui=undercurl guisp=Orange
 highlight PyCoverageMissed ctermbg=52
 
 autocmd FileType python PyCoverageHighlight
+
+" Example of how to use w:created in an autocmd
+autocmd WinEnter * if !exists('w:created') | highlight ExtraWhitespace ctermbg=red guibg=red | call matchadd('ExtraWhitespace', '\s\+$', 11) | endif
