@@ -51,3 +51,7 @@ autocmd FileType python PyCoverageHighlight
 
 " Example of how to use w:created in an autocmd
 autocmd WinEnter * if !exists('w:created') | highlight ExtraWhitespace ctermbg=red guibg=red | call matchadd('ExtraWhitespace', '\s\+$', 11) | endif
+
+" Pycoverage auto activation
+autocmd VimEnter *.py let w:pyhighlighted=1
+autocmd WinEnter *.py if !exists('w:pyhighlighted') | execute "PyCoverageHighlight" | endif

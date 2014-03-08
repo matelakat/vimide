@@ -8,12 +8,11 @@ function showdiff() {
 (
     cd "$dirname"
     for i in *; do
-        diff -u ~/"$dirname"/$i $i
+        diff -u ~/$dirname/$i "$i"
     done
 )
 }
 
 showdiff bin
-showdiff .vim/colors
-showdiff .vim/plugin
+showdiff .vim
 diff -u ~/.vimrc .vimrc
