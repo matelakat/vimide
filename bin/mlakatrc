@@ -19,7 +19,10 @@ if [ "$DISPLAY" == ":13" -o "$DISPLAY" == ":14" ]; then
     PS1="[\\w]\\$ "
 fi
 
-if xsetroot -solid \#336633 >/dev/null 2>&1; then
+if [ -n "$TMUX" ]; then
+    PROMPT_COMMAND="if [[ \$? == 0 ]]; then tmux set status-bg green > /dev/null; else tmux set status-bg red > /dev/null; fi "
+    PS1="[\\w]\\$ "
+elif xsetroot -solid \#336633 >/dev/null 2>&1; then
     # Change the background color depending on the last command's exit value
     PROMPT_COMMAND="if [[ \$? == 0 ]]; then xsetroot -solid \#336633; else xsetroot -solid \#660000; fi "
 fi
