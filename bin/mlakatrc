@@ -22,6 +22,7 @@ fi
 if [ -n "$TMUX" ]; then
     PROMPT_COMMAND="if [[ \$? == 0 ]]; then tmux set status-bg green > /dev/null; else tmux set status-bg red > /dev/null; fi "
     PS1="[\\w]\\$ "
+    export TERM=screen-256color
 elif xsetroot -solid \#336633 >/dev/null 2>&1; then
     # Change the background color depending on the last command's exit value
     PROMPT_COMMAND="if [[ \$? == 0 ]]; then xsetroot -solid \#336633; else xsetroot -solid \#660000; fi "
