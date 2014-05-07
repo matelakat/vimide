@@ -9,3 +9,7 @@ cp .vim/colors/* ~/.vim/colors/
 mkdir -p ~/.vim/plugin/
 cp .vim/plugin/* ~/.vim/plugin/
 cp .vimrc ~/
+
+if ! grep -q mlakatrc ~/.bashrc; then
+    echo ". ~/bin/mlakatrc" >> ~/.bashrc
+fi
