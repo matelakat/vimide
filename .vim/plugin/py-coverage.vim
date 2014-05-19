@@ -149,7 +149,7 @@ function! s:CoverageReport(sourcefile)
         let report = system(printf('%s report -m --include=%s', shellescape(g:py_coverage_bin), shellescape(a:sourcefile)))
 
         if v:shell_error != 0
-            echo report
+            " commented out by matelakat echo report
             let report = ''
         endif
 
