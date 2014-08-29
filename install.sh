@@ -9,6 +9,7 @@ cp .vim/colors/* ~/.vim/colors/
 mkdir -p ~/.vim/plugin/
 cp .vim/plugin/* ~/.vim/plugin/
 cp .vimrc ~/
+cp .tmux.conf ~/
 
 if ! grep -q mlakatrc ~/.bashrc; then
     echo ". ~/bin/mlakatrc" >> ~/.bashrc
