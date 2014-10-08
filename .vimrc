@@ -13,6 +13,7 @@ set encoding=utf-8
 set hlsearch
 set sw=4
 set cc=80
+set tabstop=4
 " use super for windows key, alt for alt
 " map gn :wa<CR>:!xsetroot -solid yellow & xdotool key super+2 key ctrl+p key KP_Enter key super+1<CR><CR>
 map gn :wa<CR>:!tmux set status-bg yellow & tmux send-keys -t 1 c-p enter<CR><CR>
