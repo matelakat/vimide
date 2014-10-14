@@ -21,6 +21,7 @@ map gs :wa<CR>:r !date<CR>I #: <esc><C-h>i
 map ge o  
 map gl :w<CR>:!pdflatex %<CR><CR>
 set expandtab
+au BufNewFile,BufRead *.md set filetype=markdown
 au BufNewFile,BufRead *.mak setfiletype mako
 au BufNewFile,BufRead *.mako setfiletype mako
 au BufNewFile,BufRead *.ftl setfiletype ftl
