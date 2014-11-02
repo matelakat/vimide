@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Synchronise things related to my home directory to this comuter from a
+# remote computer
+
+set +u
+
+SOURCE_PATH="$1"
+
+if [ -z "$SOURCE_PATH" ]; then
+    cat >&2 << EOF
+Usage: $0 SOURCE_IP
+
+Specify the other computer with an IP address. As an example:
+
+    $0 192.168.1.102
+
+To synchronise the home directory from 192.168.1.102 to this machine.
+EOF
+
+    exit 1
+
+fi
+
+set -eux
+
+
+SYNC="rsync -r -h -H -l -g -o -t -D -p -v --del"
+
+cd "$HOME"
+
+$SYNC --exclude known_hosts --exclude authorized_keys $SOURCE_PATH:.ssh/ .ssh
+$SYNC $SOURCE_PATH:.mutt/ .mutt
+$SYNC $SOURCE_PATH:.abook/ .abook
