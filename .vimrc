@@ -4,7 +4,7 @@ set t_Co=256
 set t_ut=
 " Select dark colorscheme
 set background=dark
-colorscheme 256-jungle
+colorscheme asmanian2
 syntax on
 filetype plugin on
 set autoindent
@@ -27,7 +27,7 @@ au BufNewFile,BufRead *.mako setfiletype mako
 au BufNewFile,BufRead *.ftl setfiletype ftl
 au BufNewFile,BufRead *.pp setfiletype puppet
 au Bufread,BufNewFile *.feature setfiletype gherkin
-so ~/.vim/plugin/py-coverage.vim
+so ~/vimfiles/plugin/py-coverage.vim
 
 command GDiff !gitdiff
 command GCommit !git commit -av
@@ -59,3 +59,5 @@ autocmd WinEnter * if !exists('w:created') | highlight ExtraWhitespace ctermbg=r
 " Pycoverage auto activation
 autocmd VimEnter *.py let w:pyhighlighted=1
 autocmd WinEnter *.py if !exists('w:pyhighlighted') | execute "PyCoverageHighlight" | endif
+
+set guifont=Courier\ New:h15
